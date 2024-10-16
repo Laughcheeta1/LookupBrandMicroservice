@@ -1,0 +1,5 @@
+I still have to make the:
+    - finish Brand controller
+    - Brand controller implementation
+    - Brand Service
+    - Brand Service implementation
