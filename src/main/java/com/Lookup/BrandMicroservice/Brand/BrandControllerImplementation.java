@@ -4,11 +4,12 @@ import com.Lookup.BrandMicroservice.Brand.DTO.BrandCreationDTO;
 import com.Lookup.BrandMicroservice.Brand.DTO.BrandResponseDTO;
 import com.Lookup.BrandMicroservice.Brand.DTO.LocationCreationDTO;
 import com.Lookup.BrandMicroservice.Brand.Entity.Brand;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,32 +24,38 @@ public class BrandControllerImplementation implements BrandController {
     }
 
     @Override
+    @GetMapping("")
     public ResponseEntity<List<BrandResponseDTO>> getAllBrands() {
         return ResponseEntity.ok(brandService.getAllBrands());
     }
 
     @Override
-    public ResponseEntity<BrandResponseDTO> getBrand(String brandId) {
+    @GetMapping("/{brandId}")
+    public ResponseEntity<BrandResponseDTO> getBrand(@PathVariable("brandId") String brandId) {
         return ResponseEntity.ok(brandService.getBrand(brandId));
     }
 
     @Override
-    public ResponseEntity<BrandResponseDTO> createBrand(BrandCreationDTO brandCreationDTO) {
+    @PostMapping
+    public ResponseEntity<BrandResponseDTO> createBrand(@RequestBody BrandCreationDTO brandCreationDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(brandService.createBrand(brandCreationDTO));
     }
 
     @Override
-    public ResponseEntity<Void> updateBrand(String brandId, BrandCreationDTO brandCreationDTO) {
+    @PutMapping("/{brandId}")
+    public ResponseEntity<Void> updateBrand(@PathVariable("brandId") String brandId, @RequestBody BrandCreationDTO brandCreationDTO) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> deleteBrand(String brandId) {
+    @DeleteMapping("/{brandId}")
+    public ResponseEntity<Void> deleteBrand(@PathVariable("brandId") String brandId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> addLocation(LocationCreationDTO locationCreationDTO) {
+    @PostMapping("/location")
+    public ResponseEntity<Void> addLocation(@RequestBody LocationCreationDTO locationCreationDTO) {
         return null;
     }
 }
