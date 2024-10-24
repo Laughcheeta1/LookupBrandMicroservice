@@ -1,7 +1,10 @@
 package com.Lookup.BrandMicroservice.Brand.DTO;
 
+import com.Lookup.BrandMicroservice.LocationStock.Entity.LocationStock;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
+@Builder
 public class LocationResponseDTO {
     @JsonProperty("direction")
     private String direction;
@@ -28,5 +31,5 @@ public class LocationResponseDTO {
     private float longitude;
 
     @JsonProperty("stock_id")
-    private String stockId;
+    private LocationStock stock;
 }

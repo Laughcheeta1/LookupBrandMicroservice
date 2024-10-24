@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface BrandController {
-    ResponseEntity<List<Brand>> getAllBrands();
+    ResponseEntity<List<BrandResponseDTO>> getAllBrands();
 
     ResponseEntity<BrandResponseDTO> getBrand(String brandId);
 
-    ResponseEntity<Void> createBrand(BrandCreationDTO brandCreationDTO);
+    ResponseEntity<BrandResponseDTO> createBrand(BrandCreationDTO brandCreationDTO);
 
     ResponseEntity<Void> updateBrand(String brandId, BrandCreationDTO brandCreationDTO);
 

@@ -1,9 +1,13 @@
 package com.Lookup.BrandMicroservice.Brand.Entity;
 
 import com.Lookup.BrandMicroservice.LocationStock.Entity.LocationStock;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+@Getter
+@Builder
 public class Location {
     @Field("direction")
     private String direction;

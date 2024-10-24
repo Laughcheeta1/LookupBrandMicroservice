@@ -1,8 +1,13 @@
 package com.Lookup.BrandMicroservice.Brand.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
+@Getter
 public class LocationCreationDTO {
+    @JsonProperty("brand_id")
+    private String brandId;
+
     @JsonProperty("direction")
     private String direction;
 

@@ -1,5 +1,6 @@
 package com.Lookup.BrandMicroservice.Brand.Entity;
 
+import lombok.Builder;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Document("Brand")
 @Data
+@Builder
 public class Brand {
     @Id
     @Field("_id")
