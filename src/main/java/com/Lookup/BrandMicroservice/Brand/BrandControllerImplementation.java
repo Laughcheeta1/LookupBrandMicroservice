@@ -44,18 +44,21 @@ public class BrandControllerImplementation implements BrandController {
     @Override
     @PutMapping("/{brandId}")
     public ResponseEntity<Void> updateBrand(@PathVariable("brandId") String brandId, @RequestBody BrandCreationDTO brandCreationDTO) {
-        return null;
+        brandService.updateBrand(brandId, brandCreationDTO);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     @DeleteMapping("/{brandId}")
     public ResponseEntity<Void> deleteBrand(@PathVariable("brandId") String brandId) {
-        return null;
+        brandService.deleteBrand(brandId);
+        return ResponseEntity.ok().build();
     }
 
     @Override
-    @PostMapping("/location")
-    public ResponseEntity<Void> addLocation(@RequestBody LocationCreationDTO locationCreationDTO) {
-        return null;
+    @PostMapping("/location/{brandId}")
+    public ResponseEntity<Void> addLocation(@PathVariable("brandId") String brandId, @RequestBody LocationCreationDTO locationCreationDTO) {
+        brandService.addLocation(brandId, locationCreationDTO);
+        return ResponseEntity.ok().build();
     }
 }

@@ -6,20 +6,26 @@ import com.Lookup.BrandMicroservice.Brand.DTO.LocationCreationDTO;
 import com.Lookup.BrandMicroservice.Brand.DTO.LocationResponseDTO;
 import com.Lookup.BrandMicroservice.Brand.Entity.Brand;
 import com.Lookup.BrandMicroservice.Brand.Entity.Location;
+import com.Lookup.BrandMicroservice.LocationStock.Entity.ItemStock;
+import com.Lookup.BrandMicroservice.LocationStock.Entity.LocationStock;
+import com.Lookup.BrandMicroservice.LocationStock.LocationStockDAO;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BrandServiceImplementation implements BrandService {
     private final BrandDAO brandDAO;
+    private final LocationStockDAO locationStockDAO;
 
     @Autowired
-    public BrandServiceImplementation(BrandDAO brandDAO)
+    public BrandServiceImplementation(BrandDAO brandDAO, LocationStockDAO locationStockDAO)
     {
         this.brandDAO = brandDAO;
+        this.locationStockDAO = locationStockDAO;
     }
 
     @Override
@@ -64,8 +70,14 @@ public class BrandServiceImplementation implements BrandService {
     }
 
     @Override
-    public void addLocation(LocationCreationDTO locationCreationDTO) {
-        Brand brand = brandDAO.findById(new ObjectId(locationCreationDTO.getBrandId())).orElseThrow(() -> new RuntimeException("Brand does not exist"));
+    public void addLocation(String brandId, LocationCreationDTO locationCreationDTO) {
+        Brand brand = brandDAO.findById(new ObjectId(brandId)).orElseThrow(() -> new RuntimeException("Brand does not exist"));
+
+        LocationStock locationStock = LocationStock.builder()
+                        .items(new ArrayList<ItemStock>())
+                        .build();
+
+        locationStockDAO.save(locationStock);
 
         brand.getLocations().add(Location.builder()
                 .direction(locationCreationDTO.getDirection())
@@ -76,6 +88,7 @@ public class BrandServiceImplementation implements BrandService {
                 .country(locationCreationDTO.getCountry())
                 .latitude(locationCreationDTO.getLatitude())
                 .longitude(locationCreationDTO.getLongitude())
+                .stock(locationStock)
                 .build()
         );
 

@@ -1,15 +1,12 @@
 package com.Lookup.BrandMicroservice.LocationStock.Entity;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
+import java.util.Map;
 
+@Getter
 public class ItemStock {
-    @Field("item")
-    private String itemId;
-
     @Field("sizes")
-    private List<Size> sizes;
-
+    private Map<String, Integer> sizes;
 }

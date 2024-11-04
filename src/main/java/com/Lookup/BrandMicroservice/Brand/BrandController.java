@@ -3,7 +3,6 @@ package com.Lookup.BrandMicroservice.Brand;
 import com.Lookup.BrandMicroservice.Brand.DTO.BrandCreationDTO;
 import com.Lookup.BrandMicroservice.Brand.DTO.BrandResponseDTO;
 import com.Lookup.BrandMicroservice.Brand.DTO.LocationCreationDTO;
-import com.Lookup.BrandMicroservice.Brand.Entity.Brand;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -19,5 +18,5 @@ public interface BrandController {
 
     ResponseEntity<Void> deleteBrand(String brandId);
 
-    ResponseEntity<Void> addLocation(LocationCreationDTO locationCreationDTO);
+    ResponseEntity<Void> addLocation(String brandId, LocationCreationDTO locationCreationDTO);
 }

@@ -5,9 +5,6 @@ import lombok.Getter;
 
 @Getter
 public class LocationCreationDTO {
-    @JsonProperty("brand_id")
-    private String brandId;
-
     @JsonProperty("direction")
     private String direction;
 
